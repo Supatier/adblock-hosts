@@ -8,6 +8,7 @@ TARGET="/etc/hosts"
     #Download and process the files needed to make the lists (enable/add more, if you want)
     wget -O- "https://adaway.org/hosts.txt"|awk -v r="$ENDPOINT_IP4" '{sub(/^127.0.0.1/, r)} $0 ~ "^"r' > /tmp/block.build.list
     wget -O- "http://www.mvps.org/winhelp2002/hosts.txt"| awk -v r="$ENDPOINT_IP4" '{sub(/^0.0.0.0/, r)} $0 ~ "^"r' >> /tmp/block.build.list
+    wget -O- "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/win10/spy.txt"| awk -v r="$ENDPOINT_IP4" '{sub(/^0.0.0.0/, r)} $0 ~ "^"r' >> /tmp/block.build.list
     wget -O- "https://www.malwaredomainlist.com/hostslist/hosts.txt"|awk -v r="$ENDPOINT_IP4" '{sub(/^127.0.0.1/, r)} $0 ~ "^"r' >> /tmp/block.build.list
     wget -O- "http://hosts-file.net/ad_servers.txt"|awk -v r="$ENDPOINT_IP4" '{sub(/^127.0.0.1/, r)} $0 ~ "^"r' >> /tmp/block.build.list
     wget -O- "https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist"| sed -r 's/[[:space:]]|[\[!#/:;_].*|[0-9\.]*localhost.*//g; s/[\^#/:;_\.\t ]*$//g' | awk -v r="$ENDPOINT_IP4" '{sub(//, r)} $0 ~ "^"r' >> /tmp/block.build.list
