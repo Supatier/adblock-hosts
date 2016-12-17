@@ -4,7 +4,6 @@ ENDPOINT_IP4="127.0.0.1"
 TARGET="/etc/hosts"
 TMPDIR="/tmp/block.build.list"
 STGDIR="/tmp/block.build.before"
-TMPDIR="/tmp"
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
    exit 1
